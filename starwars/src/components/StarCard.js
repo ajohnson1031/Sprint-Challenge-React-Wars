@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Card, Container } from "semantic-ui-react";
-import "./StarCard.css";
+import "./StarWars.css";
 import axios from "axios";
 
 function getRandomColor() {
@@ -15,6 +15,7 @@ function getRandomColor() {
 const StarCard = ({ data }) => {
   const [species, setSpecies] = useState();
   const [homeworld, setHomeworld] = useState([]);
+  const [charImage, setCharImage] = useState();
 
   useEffect(() => {
     data.species &&
@@ -28,6 +29,23 @@ const StarCard = ({ data }) => {
     data.homeworld &&
       axios.get(data.homeworld).then(res => setHomeworld(res.data.name));
   }, [data.homeworld]);
+
+  useEffect(() => {
+    data.name &&
+      axios
+        .get(
+          `http://api.giphy.com/v1/gifs/search?api_key=vhALW1hxxx7qryl9h7SoUg8BmYLsmKp3&q=${
+            data.name
+          }-star-wars&limit=25`
+        )
+        .then(res => {
+          console.log(res);
+          setCharImage(
+            res.data.data[Math.floor(Math.random() * (25 - 1 + 1)) + 0].images
+              .downsized_medium.url
+          );
+        });
+  }, []);
 
   function toggleActive(e) {
     console.log(e.target.innerHTML);
@@ -50,7 +68,9 @@ const StarCard = ({ data }) => {
           </button>
         </Container>
       </Card.Header>
+
       <Card.Content>
+        <img className="char-image" src={charImage} alt={data.name} />
         <Card.Description>
           <p>
             <strong>Species:</strong> {species}
