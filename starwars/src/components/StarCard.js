@@ -1,6 +1,7 @@
-import React from "react";
-import { Card } from "semantic-ui-react";
+import React, { useState, useEffect } from "react";
+import { Card, Container } from "semantic-ui-react";
 import "./StarCard.css";
+import axios from "axios";
 
 function getRandomColor() {
   var letters = "0123456789ABCDEF";
@@ -12,13 +13,51 @@ function getRandomColor() {
 }
 
 const StarCard = ({ data }) => {
+  const [species, setSpecies] = useState();
+  const [homeworld, setHomeworld] = useState([]);
+
+  useEffect(() => {
+    data.species &&
+      axios
+        .get(data.species)
+        .then(res => setSpecies(res.data.name))
+        .catch(err => console.log(`Error: `, err));
+  }, [data.species]);
+
+  useEffect(() => {
+    data.homeworld &&
+      axios.get(data.homeworld).then(res => setHomeworld(res.data.name));
+  }, [data.homeworld]);
+
+  function toggleActive(e) {
+    console.log(e.target.innerHTML);
+    if (e.target.innerHTML === "+") {
+      e.target.innerHTML = "-";
+      e.target.parentNode.parentNode.nextSibling.classList.add("active");
+    } else {
+      e.target.innerHTML = "+";
+      e.target.parentNode.parentNode.nextSibling.classList.remove("active");
+    }
+  }
+
   return (
     <Card className="star-card">
       <Card.Header style={{ backgroundColor: getRandomColor() }}>
-        {data.name}
+        <Container>
+          {data.name}
+          <button className="expand" onClick={e => toggleActive(e)}>
+            +
+          </button>
+        </Container>
       </Card.Header>
       <Card.Content>
         <Card.Description>
+          <p>
+            <strong>Species:</strong> {species}
+          </p>
+          <p>
+            <strong>Homeworld:</strong> {homeworld}
+          </p>
           <p>
             <strong>Gender:</strong> {data.gender}
           </p>

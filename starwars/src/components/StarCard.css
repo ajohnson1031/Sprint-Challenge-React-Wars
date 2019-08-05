@@ -8,8 +8,8 @@ html {
   width: 100%;
   height: 100%;
   margin: 0 30px;
-  display: flex;
-  flex-wrap: wrap;
+  /* display: flex;
+  flex-wrap: wrap; */
 }
 
 .star-card {
@@ -18,6 +18,8 @@ html {
   margin: 30px;
   box-sizing: border-box;
   background-color: #fff;
+  border-radius: 4px;
+  float: left;
 }
 .header {
   font-size: 1.4rem;
@@ -26,6 +28,35 @@ html {
   padding: 15px 0;
 }
 
+.header .container {
+  padding: 0 25px;
+  display: flex;
+  justify-content: space-between;
+}
+
 .content {
+  height: 0;
+  overflow: hidden;
+}
+
+.expand {
+  width: 25px;
+  height: 25px;
+  line-height: 18px;
+  border-radius: 20px;
+  border: 2px solid white;
+  margin: 0;
+  transition-duration: 0.2s;
+  background-color: transparent;
+  outline: none;
+  font-size: 1rem;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+  padding-right: 3px;
+}
+
+.active {
+  height: auto;
   padding: 30px;
 }
