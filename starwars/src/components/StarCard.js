@@ -3,15 +3,6 @@ import { Card, Container } from "semantic-ui-react";
 import "./StarWars.css";
 import axios from "axios";
 
-function getRandomColor() {
-  var letters = "0123456789ABCDEF";
-  var color = "#";
-  for (var i = 0; i < 6; i++) {
-    color += letters[Math.floor(Math.random() * 16)];
-  }
-  return color;
-}
-
 const StarCard = ({ data }) => {
   const [species, setSpecies] = useState();
   const [homeworld, setHomeworld] = useState([]);
@@ -60,7 +51,7 @@ const StarCard = ({ data }) => {
 
   return (
     <Card className="star-card">
-      <Card.Header style={{ backgroundColor: getRandomColor() }}>
+      <Card.Header>
         <Container>
           {data.name}
           <button className="expand" onClick={e => toggleActive(e)}>
