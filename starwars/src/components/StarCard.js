@@ -12,42 +12,33 @@ function getRandomColor() {
 }
 
 const StarCard = ({ data }) => {
-  const name = data ? data.name : null;
-  const gender = data ? data.gender : null;
-  const birthyear = data ? data.birth_year : null;
-  const skincolor = data ? data.skin_color : null;
-  const haircolor = data ? data.hair_color : null;
-  const eyecolor = data ? data.eye_color : null;
-  const height = data ? data.height : null;
-  const mass = data ? data.mass : null;
-
   return (
     <Card className="star-card">
       <Card.Header style={{ backgroundColor: getRandomColor() }}>
-        {name}
+        {data.name}
       </Card.Header>
       <Card.Content>
         <Card.Description>
           <p>
-            <strong>Gender:</strong> {gender}
+            <strong>Gender:</strong> {data.gender}
           </p>
           <p>
-            <strong>Y.O.B.:</strong> {birthyear}
+            <strong>Y.O.B.:</strong> {data.birthyear}
           </p>
           <p>
-            <strong>Skin Color:</strong> {skincolor}
+            <strong>Skin Color:</strong> {data.skin_color}
           </p>
           <p>
-            <strong>Hair Color:</strong> {haircolor}
+            <strong>Hair Color:</strong> {data.hair_color}
           </p>
           <p>
-            <strong>Eye Color:</strong> {eyecolor}
+            <strong>Eye Color:</strong> {data.eye_color}
           </p>
           <p>
-            <strong>Height:</strong> {height}
+            <strong>Height:</strong> {data.height}
           </p>
           <p>
-            <strong>Mass:</strong> {mass}
+            <strong>Mass:</strong> {data.mass}
           </p>
         </Card.Description>
       </Card.Content>
