@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import swapiModule from "./SWAPI-Wrapper/lib/swapi";
 import { Container } from "semantic-ui-react";
 import StarCard from "./components/StarCard";
 import "./App.css";
+import axios from "axios";
 
 const App = () => {
   const [cardData, setCardData] = useState();
@@ -11,7 +11,10 @@ const App = () => {
   const [nextState, setNextState] = useState("hidden");
 
   useEffect(() => {
-    swapiModule.getPeople({ page: pageState }, res => setCardData(res.results));
+    axios
+      .get(`https://swapi.co/api/people/?page=${pageState}`)
+      .then(res => setCardData(res.data.results))
+      .catch(err => console.log(err));
   }, [pageState]);
 
   useEffect(() => {
