@@ -18,7 +18,10 @@ const StarCard = ({ data }) => {
 
   useEffect(() => {
     data.homeworld &&
-      axios.get(data.homeworld).then(res => setHomeworld(res.data.name));
+      axios
+        .get(data.homeworld)
+        .then(res => setHomeworld(res.data.name))
+        .catch(err => console.log(err));
   }, [data.homeworld]);
 
   useEffect(() => {
@@ -30,16 +33,15 @@ const StarCard = ({ data }) => {
           }-star-wars&limit=25`
         )
         .then(res => {
-          console.log(res);
           setCharImage(
             res.data.data[Math.floor(Math.random() * (25 - 1 + 1)) + 0].images
               .downsized_medium.url
           );
-        });
-  }, []);
+        })
+        .catch(err => console.log(err));
+  }, [data.name]);
 
   function toggleActive(e) {
-    console.log(e.target.innerHTML);
     if (e.target.innerHTML === "+") {
       e.target.innerHTML = "-";
       e.target.parentNode.parentNode.nextSibling.classList.add("active");
@@ -73,7 +75,7 @@ const StarCard = ({ data }) => {
             <strong>Gender:</strong> {data.gender}
           </p>
           <p>
-            <strong>Y.O.B.:</strong> {data.birthyear}
+            <strong>Y.O.B.:</strong> {data.birth_year}
           </p>
           <p>
             <strong>Skin Color:</strong> {data.skin_color}
