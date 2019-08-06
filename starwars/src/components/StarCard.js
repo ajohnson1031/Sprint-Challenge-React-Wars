@@ -28,7 +28,7 @@ const StarCard = ({ data }) => {
     data.name &&
       axios
         .get(
-          `http://api.giphy.com/v1/gifs/search?api_key=vhALW1hxxx7qryl9h7SoUg8BmYLsmKp3&q=${
+          `https://api.giphy.com/v1/gifs/search?api_key=vhALW1hxxx7qryl9h7SoUg8BmYLsmKp3&q=${
             data.name
           }-star-wars&limit=25`
         )

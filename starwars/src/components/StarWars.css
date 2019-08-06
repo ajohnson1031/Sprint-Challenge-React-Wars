@@ -2,6 +2,7 @@ body,
 html {
   width: 100%;
   height: 100%;
+  overflow-x: hidden;
 }
 
 .header-container {
@@ -40,13 +41,12 @@ html {
 .main-container {
   width: 100%;
   height: 100%;
-  margin: 0 30px;
-  /* display: flex;
-  flex-wrap: wrap; */
+  text-align: center;
+  overflow-x: hidden;
 }
 
 .star-card {
-  width: calc(30% - 30px);
+  width: calc(30% - 50px);
   min-width: 270px;
   margin: 30px;
   box-sizing: border-box;
@@ -55,6 +55,7 @@ html {
   display: inline-flex;
   flex-direction: column;
 }
+
 .header {
   font-size: 1.4rem;
   font-weight: bold;
